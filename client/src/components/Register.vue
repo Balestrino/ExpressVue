@@ -8,6 +8,7 @@
         <br>
         <!-- calling register method -->
         <button @click="register">Register</button>
+        <div class="error" v-html="error" />
     </div>
 
 </template>
@@ -19,16 +20,21 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: null
     }
   },
   methods: {
     async register () {
-      const response = await AuthenticationService.register({
-        email: this.email,
-        password: this.password
-      })
-      console.log(response.data)
+      try {
+        const response = await AuthenticationService.register({
+          email: this.email,
+          password: this.password
+        })
+        console.log(response.data)
+      } catch (error) {
+        this.error = error.response.data.error
+      }
     }
   }
 }
@@ -49,5 +55,8 @@ li {
 }
 a {
   color: #42b983;
+}
+.error {
+  color: red;
 }
 </style>
