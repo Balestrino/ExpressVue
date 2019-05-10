@@ -9,16 +9,15 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())         //beware of security
 
-app.get('/status', (req, res) => {
+app.post('/register', (req, res) => {
     res.send({
-        message: 'hello world'
+        message: `hello ${req.body.email} your user was registered!`
     })
 })
 
-app.post('/register', (req, res) => {
+app.get('/status', (req, res) => {
     res.send({
-        message: `hello ${req.body.email}. your user was registered!`,
-
+        message: 'hello world'
     })
 })
 

@@ -6,6 +6,7 @@
         <br>
         <input type="password" name="password" placeholder="password" v-model="password" />
         <br>
+        <!-- calling register method -->
         <button @click="register">Register</button>
     </div>
 
