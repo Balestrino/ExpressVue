@@ -22,7 +22,6 @@
 
 <!-- script is the controller -->
 <script>
-import Panel from '@/components/Panel'
 import ProductsService from '@/services/ProductsService'
 
 export default {
@@ -60,9 +59,6 @@ export default {
     } catch (err) {
       console.log(err)
     }
-  },
-  components: {
-    Panel
   }
 }
 </script>

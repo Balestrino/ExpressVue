@@ -1,2 +1,10 @@
 client/node_modules
 server/node_modules
+.DS_Store
+._* .Trashes
+Thumbs.db
+*.log
+*.sql
+*.sqlite
+*.bck
+*.backup

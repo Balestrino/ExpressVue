@@ -1,12 +1,31 @@
 // import User model, so can use in our callbacks
 const {Product} = require('../models')
+const { Op } = require('sequelize');
 
 module.exports = {
   async index (req, res) {
     try {
-      const products = await Product.findAll({
-        limit: 10
-      })
+      let products = null
+      const search = req.query.search
+
+      if (search) {
+        products = await Product.findAll({
+          where: {
+            [Op.or]: [
+              'title', 'author'
+            ].map(key => ({
+              [key]: {
+                [Op.like]: `%${search}%`
+              }
+            }))
+          }
+        })
+      } else {
+        products = await Product.findAll({
+          limit:10
+        })
+      }
+
       res.send(products)
     } catch (err) {
       res.status(500).send({

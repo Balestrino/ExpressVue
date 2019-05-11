@@ -20,7 +20,6 @@
 <!-- script is the controller -->
 <script>
 import ProductsService from '@/services/ProductsService'
-import Panel from '@/components/Panel'
 
 export default {
   data () {
@@ -36,9 +35,6 @@ export default {
   async mounted () {
     const productId = this.$store.state.route.params.productId
     this.product = (await ProductsService.show(productId)).data
-  },
-  components: {
-    Panel
   }
 }
 </script>
