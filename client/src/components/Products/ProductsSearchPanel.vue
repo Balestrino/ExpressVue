@@ -6,6 +6,8 @@
 
 <!-- script is the controller -->
 <script>
+import _ from 'lodash'
+
 export default {
   data () {
     return {
@@ -13,7 +15,7 @@ export default {
     }
   },
   watch: {
-    search (value) {
+    search: _.debounce(async function (value) {
       const route = {
         name: 'products'
       }
@@ -24,7 +26,7 @@ export default {
       }
       this.$router.push(route)
       console.log(value)
-    },
+    }, 300),
     '$route.query.search': {
       immediate: true,
       handler (value) {
