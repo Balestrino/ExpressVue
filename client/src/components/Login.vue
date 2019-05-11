@@ -3,29 +3,28 @@
     <v-flex xs12 sm8 md4>
       <div class="white elevation-6">
         <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
+          <v-toolbar-title>Login</v-toolbar-title>
         </v-toolbar>
 
         <div class="pl-4 pr-4 pt-2 pb-2">
-          <br>
-          <v-text-field
-            label="Email"
-            solo
-            v-model="email"
-          ></v-text-field>
-          <br>
-          <v-text-field
-            label="Password"
-            type="password"
-            autocomplete="new-password"
-            solo
-            v-model="password"
-          ></v-text-field>
-          <br>
-          <div class="error" v-html="error" />
-          <br>
-          <!-- calling register method -->
-          <v-btn class="cyan" @click="register">Register</v-btn>
+            <br>
+            <v-text-field
+              label="Email"
+              solo
+              v-model="email"
+            ></v-text-field>
+            <br>
+            <v-text-field
+              label="Password"
+              type="password"
+              solo
+              v-model="password"
+            ></v-text-field>
+            <br>
+            <div class="error" v-html="error" />
+            <br>
+            <!-- calling register method -->
+            <v-btn class="cyan" @click="login">Login</v-btn>
         </div>
       </div>
     </v-flex>
@@ -44,9 +43,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        const response = await AuthenticationService.register({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
@@ -77,6 +76,7 @@ a {
   color: #42b983;
 }
 .error {
-  color: red;
+  color: white;
+  background-color: red;
 }
 </style>
