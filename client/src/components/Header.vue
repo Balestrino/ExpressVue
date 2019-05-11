@@ -1,11 +1,11 @@
 <template>
   <v-toolbar fixed class="cyan">
-    <v-toolbar-title class="mr-4 home" @click="navigateTo({name: 'home'})">
+    <v-toolbar-title class="mr-4 home" @click="navigateTo({name: 'index'})">
       ExpressVue
     </v-toolbar-title>
     <v-toolbar-items>
-      <v-btn flat dark>
-        Browse
+      <v-btn flat dark @click="navigateTo({name: 'products'})">
+        Products
       </v-btn>
     </v-toolbar-items>
 

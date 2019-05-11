@@ -1,40 +1,39 @@
 <template>
-  <v-layout column align-center justify-center>
-    <v-flex xs12 sm8 md4>
-      <div class="white elevation-6">
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
-        </v-toolbar>
-
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <br>
+  <v-layout column>
+    <v-flex xs6 offset-xs3>
+      <panel title="Register">
+        <form
+          name="tab-tracker-form"
+          autocomplete="off">
           <v-text-field
             label="Email"
-            solo
             v-model="email"
           ></v-text-field>
           <br>
           <v-text-field
             label="Password"
             type="password"
-            autocomplete="new-password"
-            solo
             v-model="password"
+            autocomplete="new-password"
           ></v-text-field>
-          <br>
-          <div class="error" v-html="error" />
-          <br>
-          <!-- calling register method -->
-          <v-btn class="cyan" @click="register">Register</v-btn>
-        </div>
-      </div>
+        </form>
+        <br>
+        <div class="danger-alert" v-html="error" />
+        <br>
+        <v-btn
+          dark
+          class="cyan"
+          @click="register">
+          Register
+        </v-btn>
+      </panel>
     </v-flex>
   </v-layout>
 </template>
 
-<!-- script is the controller -->
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+
 export default {
   data () {
     return {
@@ -52,6 +51,9 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'songs'
+        })
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -60,23 +62,5 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.error {
-  color: red;
-}
 </style>

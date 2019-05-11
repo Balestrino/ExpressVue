@@ -12,7 +12,7 @@ app.use(cors())         //beware of security
 
 require('./routes')(app)
 
-sequelize.sync()
+sequelize.sync({force: false})
   .then( () => {
 
     app.listen(config.port)
