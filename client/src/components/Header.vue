@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar fixed class="cyan">
+  <v-toolbar fixed flat color="cyan darken-1">
     <v-toolbar-title class="mr-4 home" @click="navigateTo({name: 'index'})">
       ExpressVue
     </v-toolbar-title>

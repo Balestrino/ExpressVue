@@ -1,12 +1,12 @@
 <template>
   <v-layout>
-    <v-flex xs6 v-if="isUserLoggedIn">
+    <v-flex xs4 v-if="isUserLoggedIn">
       <products-bookmarks />
       <recently-viewed-products class="mt-2" />
     </v-flex>
     <v-flex :class="{
       xs12: !isUserLoggedIn,
-      xs6: isUserLoggedIn}"
+      xs8: isUserLoggedIn}"
       class="ml-2">
       <ProductsSearchPanel />
       <ProductsPanel class="mt-2"/>

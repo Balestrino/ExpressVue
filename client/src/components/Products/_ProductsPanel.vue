@@ -1,6 +1,7 @@
 <template>
   <panel title="Products">
     <v-btn slot="action" class="cyan accent-3"
+    v-if="isUserLoggedIn"
     @click="navigateTo({name: 'products-create'})"
     light fab medium absolute right middle>
       <v-icon>add</v-icon>
