@@ -1,4 +1,4 @@
-const {sequelize, Product, User, Bookmark} = require ('../models')
+const {sequelize, Product, User, Bookmark, History} = require ('../models')
 
 // assure that Promise function are going all the way until going on
 const Promise = require('bluebird')
@@ -6,6 +6,7 @@ const Promise = require('bluebird')
 const users = require('./user.json')
 const products = require('./product.json')
 const bookmarks = require('./bookmark.json')
+const histories = require('./histories.json')
 
 sequelize.sync({force: true})
   .then(async function () {
@@ -20,6 +21,10 @@ sequelize.sync({force: true})
 
     await Promise.all(
       bookmarks.map(bookmark => { Bookmark.create(bookmark) })
+    )
+
+    await Promise.all(
+      histories.map(history => { History.create(history) })
     )
   })
 

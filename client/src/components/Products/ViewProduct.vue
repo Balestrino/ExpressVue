@@ -23,6 +23,7 @@
 <script>
 import ProductsService from '@/services/ProductsService'
 import BookmarksService from '@/services/BookmarksService'
+import ProductsHistoryService from '@/services/ProductsHistoryService'
 import {mapState} from 'vuex'
 
 export default {
@@ -33,13 +34,21 @@ export default {
     }
   },
   async mounted () {
-    const productId = this.$store.state.route.params.productId
-    console.log('productid: ', productId)
+    const productId = this.route.params.productId
     this.product = (await ProductsService.show(productId)).data
+
+    // Insert the page view on the history / log
+    if (this.isUserLoggedIn) {
+      ProductsHistoryService.post({
+        productId: productId
+      })
+    }
   },
   computed: {
     ...mapState([
-      'isUserLoggedIn'
+      'isUserLoggedIn',
+      'user',
+      'route'
     ])
   },
   methods: {
@@ -49,8 +58,7 @@ export default {
     async setAsBookmark () {
       try {
         this.bookmark = (await BookmarksService.post({
-          productId: this.product.id,
-          userId: this.$store.state.user.id
+          productId: this.product.id
         })).data
         console.log('bookmark')
       } catch (err) {
@@ -71,13 +79,14 @@ export default {
   watch:
   {
     async product () {
-      // BOOKMARK SECTION
       if (!this.isUserLoggedIn) { return }
       try {
-        this.bookmark = (await BookmarksService.index({
-          productId: this.product.id,
-          userId: this.$store.state.user.id
+        const bookmark = (await BookmarksService.index({
+          productId: this.product.id
         })).data
+        if (bookmark.length) {
+          this.bookmark = bookmark[0]
+        }
       } catch (err) {
         console.log('error', err)
       }
