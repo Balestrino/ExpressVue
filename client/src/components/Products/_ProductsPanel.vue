@@ -13,7 +13,7 @@
           </div>
         </v-flex>
         <v-flex xs6>
-          <div class="product-title">
+          <div class="product-author">
             {{product.author}}
           </div>
 
@@ -32,12 +32,23 @@
 
 <!-- script is the controller -->
 <script>
+import {mapState} from 'vuex'
 import ProductsService from '@/services/ProductsService'
+
 export default {
+  props: [
+    'product'
+  ],
   data () {
     return {
-      products: null
+      products: null,
+      isBookMarked: false
     }
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn'
+    ])
   },
   methods: {
     navigateTo (route) {
@@ -51,10 +62,6 @@ export default {
         this.products = (await ProductsService.index(value)).data
       }
     }
-  },
-  async mounted () {
-    // Do a request to the backend for all the projects
-    this.products = (await ProductsService.index()).data
   }
 }
 </script>

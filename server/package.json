@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon --watch src --exec npm run server",
     "server": "node src/app.js",
-    "lint": "eslint **/*.js"
+    "lint": "eslint **/*.js",
+    "seed": "node ./src/seed/index.js"
   },
   "keywords": [],
   "author": "",

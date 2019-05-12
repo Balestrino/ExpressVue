@@ -4,9 +4,9 @@ import Home from '@/components/Home'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Products from '@/components/Products/Index'
-import CreateProduct from '@/components/CreateProduct'
-import ViewProduct from '@/components/ViewProduct'
-import EditProduct from '@/components/EditProduct'
+import ViewProduct from '@/components/Products/ViewProduct'
+import CreateProduct from '@/components/Products/CreateProduct'
+import EditProduct from '@/components/Products/EditProduct'
 
 Vue.use(Router)
 
@@ -46,6 +46,10 @@ export default new Router({
       path: '/products/:productId/edit',
       name: 'products-edit',
       component: EditProduct
+    },
+    {
+      path: '*',
+      redirect: 'products'
     }
   ]
 })

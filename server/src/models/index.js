@@ -22,6 +22,13 @@ fs
     console.log(model)
   })
 
+// run the associations (if any) over our models
+Object.keys(db).forEach(function(modelName){
+  if('associate' in db[modelName]){
+    db[modelName].associate(db)
+  }
+})
+
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 

@@ -1,6 +1,7 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 const ProductsController = require('./controllers/ProductsController')
+const BookmarksController = require('./controllers/BookmarksController')
 
 module.exports = (app) => {
   app.post('/register',
@@ -19,4 +20,8 @@ module.exports = (app) => {
   app.get('/products/:productId', ProductsController.show)
   app.get('/products', ProductsController.index)
   app.put('/products/:productId', ProductsController.put)
+
+  app.get('/bookmarks', BookmarksController.index)
+  app.post('/bookmarks', BookmarksController.post)
+  app.delete('/bookmarks/:bookmarkId', BookmarksController.delete)
 }

@@ -9,8 +9,8 @@
 
 <!-- script is the controller -->
 <script>
-import ProductsPanel from './ProductsPanel'
-import ProductsSearchPanel from './ProductsSearchPanel'
+import ProductsPanel from './_ProductsPanel'
+import ProductsSearchPanel from './_ProductsSearchPanel'
 import ProductsService from '@/services/ProductsService'
 
 export default {
@@ -20,7 +20,7 @@ export default {
   },
   data () {
     return {
-      products: null
+      product: {}
     }
   },
   methods: {
